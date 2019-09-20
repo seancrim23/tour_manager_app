@@ -1,10 +1,12 @@
 const path = require('path');
 const webpack = require('webpack');
 const htmlWebpackPlugin = require('html-webpack-plugin');
+const babelPolyfill = require('babel-polyfill');
 
 module.exports = {
     entry: {
         main: [ 
+            'babel-polyfill',
             'webpack-hot-middleware/client?path=/__webpack_hmr&timeout=20000',
             './src/index.js'
         ]

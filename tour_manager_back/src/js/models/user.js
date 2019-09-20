@@ -17,7 +17,7 @@ most important band things?
 - easy contact (all band's numbers/emails?)
 */
 const userSchema = new Schema({
-    email: {
+    username: {
         type: String,
         required: true,
         trim: true,
@@ -28,7 +28,7 @@ const userSchema = new Schema({
         required: true,
         trim: true
     },
-    token: [{
+    tokens: [{
         token: {
             type: String,
             required: true
@@ -37,9 +37,12 @@ const userSchema = new Schema({
     type: {
         type: String,
         required: true,
-        enum: ['band', 'promoter']
-    },
-    name: {
+        enum: {
+            values: ['band', 'promoter'],
+            message: 'User can either be a Band or a Promoter, please pick one.'
+        }
+    }
+    /*name: {
         type: String,
         required: true,
         trim: true
@@ -61,7 +64,7 @@ const userSchema = new Schema({
         linkUrl: {
             type: String
         }
-    }]
+    }]*/
 });
 
 userSchema.pre('save', async function(next){
@@ -74,7 +77,7 @@ userSchema.pre('save', async function(next){
     next();
 });
 
-userSchema.static.validateLogin = async function(username, password){
+userSchema.statics.validateLogin = async (username, password) => {
     const user = await userModel.findOne({ username });
 
     if(!user){

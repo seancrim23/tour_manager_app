@@ -1,5 +1,6 @@
 import logMessage from './js/utils/logger'
 import './css/style.css'
+import 'babel-polyfill';
 // Log message to console
 logMessage('Welcome to Expack!') // eslint-disable-line no-undef
 
