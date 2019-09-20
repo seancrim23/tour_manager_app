@@ -63,7 +63,7 @@
 /******/
 /******/ 	var hotApplyOnUpdate = true;
 /******/ 	// eslint-disable-next-line no-unused-vars
-/******/ 	var hotCurrentHash = "9d7c6b58b0a07460c0d4";
+/******/ 	var hotCurrentHash = "7459a718a408c1c8b357";
 /******/ 	var hotRequestTimeout = 10000;
 /******/ 	var hotCurrentModuleData = {};
 /******/ 	var hotCurrentChildModule;
@@ -2860,13 +2860,13 @@ if (true) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _js_logger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/logger */ "./src/js/logger.js");
+/* harmony import */ var _js_utils_logger__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./js/utils/logger */ "./src/js/utils/logger.js");
 /* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./css/style.css */ "./src/css/style.css");
 /* harmony import */ var _css_style_css__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(_css_style_css__WEBPACK_IMPORTED_MODULE_1__);
 
  // Log message to console
 
-Object(_js_logger__WEBPACK_IMPORTED_MODULE_0__["default"])('Welcome to Expack!'); // eslint-disable-line no-undef
+Object(_js_utils_logger__WEBPACK_IMPORTED_MODULE_0__["default"])('Welcome to Expack!'); // eslint-disable-line no-undef
 
 if (typeof module.hot !== 'undefined') {
   // eslint-disable-line no-undef
@@ -2875,10 +2875,10 @@ if (typeof module.hot !== 'undefined') {
 
 /***/ }),
 
-/***/ "./src/js/logger.js":
-/*!**************************!*\
-  !*** ./src/js/logger.js ***!
-  \**************************/
+/***/ "./src/js/utils/logger.js":
+/*!********************************!*\
+  !*** ./src/js/utils/logger.js ***!
+  \********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 

@@ -4,6 +4,7 @@ import webpack from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import config from '../../webpack.dev.config';
+import { connectDb } from '../js/utils/db/mongoDbConnector';
 
 const app = express(),
             DIST_DIR = __dirname,
@@ -29,7 +30,14 @@ app.get('*', (req, res, next) => {
 
 const PORT = process.env.LOCAL_PORT || 3030;
 
-app.listen(PORT, () => {
-    console.log(`App listening on port: ${PORT}...`);
-    console.log('Press Ctrl+C to quit.');
+connectDb().then(() => {
+    app.listen(PORT, () => {
+        console.log(`App listening on port: ${PORT}...`);
+        console.log('Press Ctrl+C to quit.');
+    });
+})
+.catch(error => {
+    console.log(`Error connecting to the database: ${error}`);
 });
+
+export default app;
