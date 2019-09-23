@@ -1,0 +1,11 @@
+export const APP_LOGIN = 'APP_LOGIN';
+export const APP_LOGIN_SUCCESS = 'APP_LOGIN_SUCCESS';
+export const APP_LOGIN_FAIL = 'APP_LOGIN_FAIL';
+
+export const APP_SIGNUP = 'APP_SIGNUP';
+export const APP_SIGNUP_SUCCESS = 'APP_SIGNUP_SUCCESS';
+export const APP_SIGNUP_FAIL = 'APP_SIGNUP_FAIL';
+
+export const APP_LOGOUT = 'APP_LOGOUT';
+export const APP_LOGOUT_SUCCESS = 'APP_LOGOUT_SUCCESS';
+export const APP_LOGOUT_FAIL = 'APP_LOGOUT_FAIL';
