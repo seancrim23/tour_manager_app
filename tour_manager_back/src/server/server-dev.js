@@ -7,6 +7,7 @@ import config from '../../webpack.dev.config';
 import { connectDb } from '../js/utils/db/mongoDbConnector';
 import 'babel-polyfill';
 import userRouter from '../js/routes/userRouter';
+import cors from 'cors';
 
 const app = express(),
             DIST_DIR = __dirname,
@@ -14,7 +15,9 @@ const app = express(),
             compiler = webpack(config);
 
 app.use(express.json());
+app.use(cors());
 app.use(userRouter);
+
 
 app.use(webpackDevMiddleware(compiler, {
     publicPath: config.output.publicPath

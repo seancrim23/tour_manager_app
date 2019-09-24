@@ -81,12 +81,12 @@ userSchema.statics.validateLogin = async (username, password) => {
     const user = await userModel.findOne({ username });
 
     if(!user){
-        return new Error('Please enter a valid username/password!');
+        throw new Error('Please enter a valid username/password!');
     }
 
     const isCorrectUser = await bcrypt.compareSync(password, user.password);
     if(!isCorrectUser){
-        return new Error('Please enter a valid username/password!');
+        throw new Error('Please enter a valid username/password!');
     }
 
     return user;
@@ -95,7 +95,9 @@ userSchema.statics.validateLogin = async (username, password) => {
 userSchema.methods.generateAuthToken = async function(){
     const user = this;
     
-    const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET);
+    const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const decoded = jwt.verify(token, process.env.JWT_SECRET);
+    console.log(decoded);
     user.tokens = user.tokens.concat({ token });
 
     await user.save();

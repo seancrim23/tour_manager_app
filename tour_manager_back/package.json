@@ -20,6 +20,7 @@
   "license": "ISC",
   "dependencies": {
     "babel-polyfill": "^6.26.0",
+    "cors": "^2.8.5",
     "env-cmd": "^10.0.1",
     "eslint-plugin-react": "^7.14.3",
     "express": "^4.17.1"
