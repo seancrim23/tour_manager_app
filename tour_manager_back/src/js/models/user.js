@@ -97,12 +97,15 @@ userSchema.methods.generateAuthToken = async function(){
     
     const token = jwt.sign({ _id: user._id.toString() }, process.env.JWT_SECRET, { expiresIn: '1h' });
     const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    console.log(decoded);
+    const expTime = (decoded.exp - decoded.iat) * 1000;
     user.tokens = user.tokens.concat({ token });
 
     await user.save();
 
-    return token;
+    return { 
+        token,
+        expTime
+    };
 };
 
 const userModel = mongoose.model('User', userSchema);

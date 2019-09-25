@@ -1,3 +1,4 @@
 export {
-    loginUser
+    loginUser,
+    logoutUser
 } from '../actions/User';

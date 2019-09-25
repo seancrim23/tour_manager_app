@@ -2,7 +2,9 @@ import * as actionTypes from '../actionTypes';
 
 const initialState = {
     loginError: null,
-    loggedIn: false
+    loggedIn: false,
+    loggedInType: null,
+    logoutError: null
 };
 
 export default function userReducer(state = initialState, action) {
@@ -22,6 +24,21 @@ export default function userReducer(state = initialState, action) {
             return {
                 ...state,
                 loginError: action.error
+            };
+        case actionTypes.APP_LOGOUT:
+            return {
+                ...state,
+                logoutError: null
+            };
+        case actionTypes.APP_LOGOUT_SUCCESS:
+            return {
+                ...state,
+                loggedIn: false
+            };
+        case actionTypes.APP_LOGOUT_FAIL:
+            return {
+                ...state,
+                logoutError: action.error
             };
         default:
             return state;

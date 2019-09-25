@@ -12,23 +12,17 @@ import * as actions from './redux/actions/index';
 
 const App = props =>{
 
-  const loginHandler = (event) => {
-    event.preventDefault();
-    const username = event.target.childNodes[1].childNodes[1].value;
-    const pass = event.target.childNodes[2].childNodes[1].value;
-    props.appLogin(username, pass);
-  }
-
-  const loggedIn = props.loggedIntoApp ? <p>logged in :)</p> : <p>logged out :(</p>;
-
   return (
     <Router>
       <div className={classes.App}>
         <Navbar />
-          {loggedIn}
           <Route exact path ="/"/>
-          <Route exact path="/login" render={() => <Login submitLogin={loginHandler} />} />
-          <Route exact path="/signup" component={Signup} />
+          { !props.loggedIntoApp ?
+                  <React.Fragment>
+                    <Route exact path="/login" component={Login} />
+                    <Route exact path="/signup" component={Signup} />
+                  </React.Fragment> : null
+          }
         <Footer />
       </div>
     </Router>
@@ -41,11 +35,4 @@ const mapStateToProps = state => {
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    appLogin: (uName, pass) => dispatch(actions.loginUser(uName, pass))
-  };
-};
-
-
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps)(App);

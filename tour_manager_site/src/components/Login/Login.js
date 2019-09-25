@@ -2,10 +2,19 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import classes from './Login.module.css';
 import { connect } from 'react-redux';
+import * as actions from '../../redux/actions/index';
 
 const Login = props => {
+    
+    const loginHandler = (event) => {
+        event.preventDefault();
+        const username = event.target.childNodes[1].childNodes[1].value;
+        const pass = event.target.childNodes[2].childNodes[1].value;
+        props.appLogin(username, pass);
+    };
+
     return (
-        <form onSubmit={props.submitLogin} className={classes.Login}>
+        <form onSubmit={loginHandler} className={classes.Login}>
             <h2><u>Login</u></h2>
             <label htmlFor="username">
                 <span>Username: </span><input type="email" name="username" placeholder={"username@email.com"} />
@@ -28,4 +37,10 @@ const mapStateToProps = state => {
     };
 };
 
-export default connect(mapStateToProps)(Login);
+const mapDispatchToProps = dispatch => {
+    return {
+        appLogin: (uName, pass) => dispatch(actions.loginUser(uName, pass))
+    };
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Login);
