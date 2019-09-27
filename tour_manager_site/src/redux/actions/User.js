@@ -1,5 +1,6 @@
 import * as actionTypes from '../actionTypes';
 import axios from 'axios';
+import history from '../../utils/history';
 
 export function loginUser(username, password){
     return dispatch => {
@@ -33,6 +34,7 @@ function loginUserSuccess(response){
         logoutUser();
     }, response.data.expTime);
     localStorage.setItem('auth', response.data.token);
+    history.push('/');
     return { type: actionTypes.APP_LOGIN_SUCCESS };
 };
 

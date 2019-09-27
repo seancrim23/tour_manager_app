@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
 import classes from './Login.module.css';
 import { connect } from 'react-redux';
 import * as actions from '../../redux/actions/index';
@@ -33,7 +33,8 @@ const Login = props => {
 
 const mapStateToProps = state => {
     return {
-        loginErrorMessage: state.user.loginError
+        loginErrorMessage: state.user.loginError,
+        loggedIntoApp: state.user.loggedIn
     };
 };
 

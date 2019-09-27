@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Navbar from './components/Navbar/Navbar';
 import Footer from './components/Footer/Footer';
 import Login from './components/Login/Login';
@@ -8,21 +8,22 @@ import GenericSearch from './containers/GenericSearch/GenericSearch';
 import BandInterface from './containers/BandInterface/BandInterface';
 import classes from './App.module.css'
 import { connect } from 'react-redux';
+import history from './utils/history';
 import * as actions from './redux/actions/index';
 
 const App = props =>{
 
+  const loginSignupRoutes = props.loggedIntoApp ? null : <React.Fragment>
+                                                            <Route exact path="/login" component={Login} />
+                                                            <Route exact path="/signup" component={Signup} />
+                                                          </React.Fragment>;
+
   return (
-    <Router>
+    <Router history={history}>
       <div className={classes.App}>
         <Navbar />
           <Route exact path ="/"/>
-          { !props.loggedIntoApp ?
-                  <React.Fragment>
-                    <Route exact path="/login" component={Login} />
-                    <Route exact path="/signup" component={Signup} />
-                  </React.Fragment> : null
-          }
+          {loginSignupRoutes}
         <Footer />
       </div>
     </Router>
