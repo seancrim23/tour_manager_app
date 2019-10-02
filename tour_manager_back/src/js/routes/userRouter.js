@@ -10,9 +10,9 @@ userRouter.post('/user/signup', async (req, res) => {
     try{
         await user.save();
         const token = await user.generateAuthToken();
-        res.status(201).send({ user, token });
+        res.status(201).send({ user, token: token.token, expTime: token.expTime });
     }catch(e){
-        res.status(500).send(e.stack);
+        res.status(500).send({ error: e.message });
     }
 });
 
@@ -21,7 +21,7 @@ userRouter.post('/user/login', async (req, res) => {
     try{
         const user = await User.validateLogin(req.body.username, req.body.password);
         const token = await user.generateAuthToken();
-        res.send({ token: token.token, expTime: token.expTime });
+        res.send({ user, token: token.token, expTime: token.expTime });
     }catch(e){
         res.status(400).send({ error: e.message });
     }

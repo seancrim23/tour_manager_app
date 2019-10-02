@@ -8,9 +8,11 @@ const Login = props => {
     
     const loginHandler = (event) => {
         event.preventDefault();
-        const username = event.target.childNodes[1].childNodes[1].value;
-        const pass = event.target.childNodes[2].childNodes[1].value;
-        props.appLogin(username, pass);
+        const data = {
+            username: event.target.childNodes[1].childNodes[1].value,
+            password: event.target.childNodes[2].childNodes[1].value
+        };
+        props.appLogin(data);
     };
 
     return (
@@ -33,14 +35,13 @@ const Login = props => {
 
 const mapStateToProps = state => {
     return {
-        loginErrorMessage: state.user.loginError,
-        loggedIntoApp: state.user.loggedIn
+        loginErrorMessage: state.user.loginError
     };
 };
 
 const mapDispatchToProps = dispatch => {
     return {
-        appLogin: (uName, pass) => dispatch(actions.loginUser(uName, pass))
+        appLogin: (data) => dispatch(actions.loginUser(data))
     };
 };
 

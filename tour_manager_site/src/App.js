@@ -24,6 +24,7 @@ const App = props =>{
         <Navbar />
           <Route exact path ="/"/>
           {loginSignupRoutes}
+          <p>{props.appUserType}</p>
         <Footer />
       </div>
     </Router>
@@ -32,7 +33,8 @@ const App = props =>{
 
 const mapStateToProps = state => {
   return {
-    loggedIntoApp: state.user.loggedIn
+    loggedIntoApp: state.user.loggedIn,
+    appUserType: state.user.loggedInType
   };
 };
 

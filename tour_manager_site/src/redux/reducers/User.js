@@ -4,7 +4,8 @@ const initialState = {
     loginError: null,
     loggedIn: false,
     loggedInType: null,
-    logoutError: null
+    logoutError: null,
+    signupError: null
 };
 
 export default function userReducer(state = initialState, action) {
@@ -18,7 +19,8 @@ export default function userReducer(state = initialState, action) {
         case actionTypes.APP_LOGIN_SUCCESS:
             return {
                 ...state,
-                loggedIn: true
+                loggedIn: true,
+                loggedInType: action.userType
             };
         case actionTypes.APP_LOGIN_FAIL:
             return {
@@ -28,7 +30,8 @@ export default function userReducer(state = initialState, action) {
         case actionTypes.APP_LOGOUT:
             return {
                 ...state,
-                logoutError: null
+                logoutError: null,
+                loggedInType: null
             };
         case actionTypes.APP_LOGOUT_SUCCESS:
             return {
@@ -39,6 +42,24 @@ export default function userReducer(state = initialState, action) {
             return {
                 ...state,
                 logoutError: action.error
+            };
+        case actionTypes.APP_SIGNUP:
+            return {
+                ...state,
+                loggedInType: null,
+                loggedIn: false,
+                signupError: null
+            };
+        case actionTypes.APP_SIGNUP_SUCCESS:
+            return {
+                ...state,
+                loggedIn: true,
+                loggedInType: action.userType
+            };
+        case actionTypes.APP_SIGNUP_FAIL:
+            return {
+                ...state,
+                signupError: action.error
             };
         default:
             return state;

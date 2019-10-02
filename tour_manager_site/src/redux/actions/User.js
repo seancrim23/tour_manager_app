@@ -2,7 +2,7 @@ import * as actionTypes from '../actionTypes';
 import axios from 'axios';
 import history from '../../utils/history';
 
-export function loginUser(username, password){
+export function loginUser(data){
     return dispatch => {
         dispatch(userLoggingIn());
         axios({
@@ -10,10 +10,7 @@ export function loginUser(username, password){
             headers: {
                 'Content-Type': 'application/json'
             },
-            data: {
-                username,
-                password
-            },
+            data,
             url: 'http://localhost:3030/user/login'
         })
         .then(response => {
@@ -30,12 +27,13 @@ function userLoggingIn(){
 };
 
 function loginUserSuccess(response){
+    //we will need to pass the user in some way to this.....when a user logs in we need some key to pull all of the user data and populate the resulting view
     setTimeout(() => {
         logoutUser();
     }, response.data.expTime);
     localStorage.setItem('auth', response.data.token);
     history.push('/');
-    return { type: actionTypes.APP_LOGIN_SUCCESS };
+    return { type: actionTypes.APP_LOGIN_SUCCESS, userType: response.data.user.type };
 };
 
 function loginUserFail(error){
@@ -74,4 +72,45 @@ function userLogoutSuccess(response){
 
 function userLogoutFail(error){
     return { type: actionTypes.APP_LOGOUT_FAIL, error };
+};
+
+export function signupUser(data){
+    return dispatch => {
+        dispatch(userSigningUp());
+        axios({
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            data,
+            url: 'http://localhost:3030/user/signup'
+        })
+        .then(response => {
+            console.log(response);
+            dispatch(userSignupSuccess(response));
+        })
+        .catch(error => {
+            console.log(error.response.data.error);
+            dispatch(userSignupFail(error.response.data.error));
+        });
+    };
+}
+
+function userSigningUp(){
+    return { type: actionTypes.APP_SIGNUP };
+};
+
+function userSignupSuccess(response){
+    //we'll need to use this success to pull the user....
+    //when they sign up we should show the home page initialized with what they signed up with
+    setTimeout(() => {
+        logoutUser();
+    }, response.data.expTime);
+    localStorage.setItem('auth', response.data.token);
+    history.push('/');
+    return { type: actionTypes.APP_SIGNUP_SUCCESS, userType: response.data.user.type };
+};
+
+function userSignupFail(error){
+    return { type: actionTypes.APP_SIGNUP_FAIL, error };
 };

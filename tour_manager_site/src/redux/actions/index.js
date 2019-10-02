@@ -1,4 +1,5 @@
 export {
     loginUser,
-    logoutUser
+    logoutUser,
+    signupUser
 } from '../actions/User';

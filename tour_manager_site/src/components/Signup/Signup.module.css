@@ -1,0 +1,78 @@
+.Signup{
+	width: 600px;
+	font-size: 16px;
+	background: #333;
+	padding: 30px 30px 15px 30px;
+    border: 5px solid rgb(138, 138, 138);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+.Signup input[type=submit],
+.Signup input[type=button],
+.Signup input[type=text],
+.Signup input[type=email],
+.Signup textarea,
+.Signup label,
+.Signup p
+{
+	font-family: Georgia, "Times New Roman", Times, serif;
+	font-size: 16px;
+	color: #fff;
+}
+.Signup label {
+	display: block;
+	margin-bottom: 10px;
+}
+.Signup label > span{
+	display: inline-block;
+	float: left;
+	width: 150px;
+}
+.Signup input[type=text],
+.Signup input[type=email],
+.Signup input[type=password] 
+{
+	background: transparent;
+	border: none;
+	border-bottom: 1px dashed #83A4C5;
+	width: 400px;
+	outline: none;
+	padding: 0px 0px 0px 0px;
+	font-style: italic;
+}
+
+.Signup textarea:focus, 
+.Signup input[type=text]:focus,
+.Signup input[type=email]:focus,
+.Signup input[type=email] :focus
+{
+	border-bottom: 1px dashed #D9FFA9;
+}
+
+.Signup input[type=submit],
+.Signup input[type=button]{
+	background: rgb(138, 138, 138);
+    border: none;
+    margin-top: 5px;
+	padding: 8px 10px 8px 10px;
+	border-radius: 5px;
+    color: #A8BACE;
+    width: 45%;
+
+}
+.Signup input[type=submit]:hover,
+.Signup input[type=button]:hover{
+background: #394D61;
+}
+
+.Signup p {
+    text-align: center;
+}
+
+.Signup h2 {
+    font-family: Georgia, "Times New Roman", Times, serif;
+    text-align: center;
+    color: #fff;
+}
